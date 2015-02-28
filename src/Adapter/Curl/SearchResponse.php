@@ -11,6 +11,7 @@ class SearchResponse implements SearchResponseInterface
     private $name;
     private $province;
     private $district;
+    private $commune;
     private $city;
     private $postalCode;
     private $street;
@@ -22,6 +23,7 @@ class SearchResponse implements SearchResponseInterface
         $this->name = $response->Nazwa->__toString();
         $this->province = $response->Wojewodztwo->__toString();
         $this->district = $response->Powiat->__toString();
+        $this->commune = $response->Gmina->__toString();
         $this->city = $response->Miejscowosc->__toString();
         $this->postalCode = $response->KodPocztowy->__toString();
         $this->street = $response->Ulica->__toString();
@@ -46,6 +48,11 @@ class SearchResponse implements SearchResponseInterface
     public function getDistrict()
     {
         return $this->district;
+    }
+
+    public function getCommune()
+    {
+        return $this->commune;
     }
 
     public function getCity()

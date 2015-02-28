@@ -12,6 +12,8 @@ interface SearchResponseInterface
 
     public function getDistrict();
 
+    public function getCommune();
+
     public function getCity();
 
     public function getPostalCode();
