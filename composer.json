@@ -1,5 +1,5 @@
 {
-  "name": "Raptek/Regon",
+  "name": "raptek/regon",
   "description": "Library for retrieving data from GUS",
   "type" : "library",
   "minimum-stability": "stable",
