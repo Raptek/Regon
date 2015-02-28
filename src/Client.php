@@ -2,9 +2,13 @@
 
 namespace Raptek\Regon;
 
+use InvalidArgumentException;
 use Raptek\Regon\Adapter\AdapterInterface;
 use Raptek\Regon\Exception\InvalidCaptchaLengthException;
 use Raptek\Regon\Exception\LoginException;
+use Raptek\Regon\Validator\KrsValidator;
+use Raptek\Regon\Validator\NipValidator;
+use Raptek\Regon\Validator\RegonValidator;
 
 class Client
 {
@@ -48,9 +52,11 @@ class Client
         return $this->adapter->checkCaptcha($this->sid, $captcha);
     }
 
-    public function search($type, $values)
+    public function search($type, $value)
     {
-        return $this->adapter->search($this->sid, $type, $values);
+        $this->validate($type, $value);
+
+        return $this->adapter->search($this->sid, $type, $value);
     }
 
     public function searchByNip($value)
@@ -70,6 +76,28 @@ class Client
 
     private function validate($type, $value)
     {
+        $validator = $this->getValidator($type);
 
+        return $validator->validate($value);
+    }
+
+    private function getValidator($type)
+    {
+        switch ($type) {
+            case Regon::SEARCH_TYPE_NIP:
+                $validator = new NipValidator();
+                break;
+            case Regon::SEARCH_TYPE_REGON:
+                $validator = new RegonValidator();
+                break;
+            case Regon::SEARCH_TYPE_KRS:
+                $validator = new KrsValidator();
+                break;
+            default:
+                throw new InvalidArgumentException();
+                break;
+        }
+
+        return $validator;
     }
 }

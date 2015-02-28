@@ -5,7 +5,7 @@ namespace Raptek\Regon\Validator;
 use InvalidArgumentException;
 use Raptek\Regon\Exception\InvalidArgumentLengthException;
 
-class NipValidator implements ValidatorInterface
+class RegonValidator implements ValidatorInterface
 {
     public function validate($value)
     {
@@ -14,19 +14,21 @@ class NipValidator implements ValidatorInterface
         }
 
         $stringValue = (string)$value;
-        $nip = preg_replace('/[ -]/im', '', $stringValue);
-        $length = strlen($nip);
+        $regon = preg_replace('/[ -]/im', '', $stringValue);
+        $length = strlen($regon);
 
-        if ($length !== 10) {
+        if ($length !== 9 && $length !== 14) {
             throw new InvalidArgumentLengthException();
         }
 
         $mod = 11;
         $sum = 0;
-        $weights = [6, 5, 7, 2, 3, 4, 5, 6, 7];
+        $weights[9] = [8, 9, 2, 3, 4, 5, 6, 7];
+        $weights[14] = [2, 4, 8, 5, 0, 9, 7, 3, 6, 1, 2, 4, 8];
         $digits = [];
-        preg_match_all("/\d/", $nip, $digits);
+        preg_match_all("/\d/", $regon, $digits);
         $digitsArray = $digits[0];
+        $weights = $weights[$length];
 
         foreach ($digitsArray as $digit) {
             $weight = current($weights);
@@ -35,7 +37,7 @@ class NipValidator implements ValidatorInterface
         }
 
         if ((($sum % $mod == 10) ? 0 : $sum % $mod) != $digitsArray[$length - 1]) {
-            throw new InvalidArgumentException('Podany numer NIP jest niepoprawny');
+            throw new InvalidArgumentException('Podany numer REGON jest niepoprawny');
         }
 
         return true;

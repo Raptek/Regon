@@ -1,14 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Krzysztof
- * Date: 2015-02-28
- * Time: 19:31
- */
 
 namespace Raptek\Regon\Exception;
 
+use Exception;
 
-class InvalidArgumentLengthException {
-
+class InvalidArgumentLengthException extends Exception
+{
+    // TODO Dodać treść błędu
 }
