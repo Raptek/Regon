@@ -4,7 +4,7 @@ namespace Raptek\Regon\Exception;
 
 use Exception;
 
-class InvalidCaptchaLength extends Exception
+class InvalidCaptchaLengthException extends Exception
 {
     // TODO Dodać treść błędu
 }

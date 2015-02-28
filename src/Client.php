@@ -3,7 +3,7 @@
 namespace Raptek\Regon;
 
 use Raptek\Regon\Adapter\AdapterInterface;
-use Raptek\Regon\Exception\InvalidCaptchaLength;
+use Raptek\Regon\Exception\InvalidCaptchaLengthException;
 use Raptek\Regon\Exception\LoginException;
 
 class Client
@@ -42,7 +42,7 @@ class Client
     public function checkCaptcha($captcha)
     {
         if (strlen($captcha) !== Regon::CAPTCHA_LENGTH) {
-            throw new InvalidCaptchaLength();
+            throw new InvalidCaptchaLengthException();
         }
 
         return $this->adapter->checkCaptcha($this->sid, $captcha);
@@ -66,5 +66,10 @@ class Client
     public function searchByKrs($value)
     {
         return $this->search(Regon::SEARCH_TYPE_KRS, $value);
+    }
+
+    private function validate($type, $value)
+    {
+
     }
 }
