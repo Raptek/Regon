@@ -27,5 +27,5 @@ class Regon
     const SEARCH_TYPE_NIPY = 'Nipy';
     const SEARCH_TYPE_REGON = 'Regon';
     const SEARCH_TYPE_REGONY9 = 'Regony9zn';
-    const SEARCH_TYPE_REGONY14 = 'Regon14zn';
+    const SEARCH_TYPE_REGONY14 = 'Regony14zn';
 }
