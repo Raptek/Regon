@@ -1,0 +1,22 @@
+{
+  "name": "Raptek/Regon",
+  "description": "Library for retrieving data from GUS",
+  "type" : "library",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Krzysztof Winiarski",
+      "email": "raptilek@gmail.com"
+    }
+  ],
+  "require": {
+    "php" : ">=5.3",
+    "php-curl-class/php-curl-class": "2.1.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Raptek\\Regon\\" : "src/"
+    }
+  }
+}
