@@ -81,7 +81,7 @@ class CurlAdapter implements AdapterInterface
         $this->curl->setHeader(Regon::SESSION_ID, $sid);
         $this->curl->post($this->getUrl(self::URL_SEARCH), $this->prepareData($data));
 
-        return simplexml_load_string($this->getResponse())->dane;
+        return new SearchResponse(simplexml_load_string($this->getResponse())->dane);
     }
 
     private function getResponse()
