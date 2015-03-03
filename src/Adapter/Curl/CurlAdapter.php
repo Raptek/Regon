@@ -18,13 +18,16 @@ class CurlAdapter implements AdapterInterface
 
     private $endpoint = '/ajaxEndpoint/';
     private $curl;
+    private $baseUrl;
 
-    public function __construct()
+    public function __construct($baseUrl)
     {
         $this->curl = new Curl();
         $this->curl->setHeader('Content-Type', 'application/json');
         // TODO Ogarnąć certyfikat
         $this->curl->setOpt(CURLOPT_SSL_VERIFYPEER, false);
+
+        $this->baseUrl = $baseUrl;
     }
 
     public function getEndpoint()
@@ -95,7 +98,7 @@ class CurlAdapter implements AdapterInterface
 
     private function getUrl($action)
     {
-        return sprintf('%s%s%s', Regon::SERVICE_URL_TEST, $this->endpoint, $action);
+        return sprintf('%s%s%s', $this->baseUrl, $this->endpoint, $action);
     }
 
     private function prepareData(array $data)
