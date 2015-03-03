@@ -14,7 +14,6 @@ class Client
 {
     private $apiKey;
     private $adapter;
-    private $sid;
 
     public function __construct($apiKey, AdapterInterface $adapter)
     {
@@ -30,48 +29,48 @@ class Client
             throw new LoginException();
         }
 
-        $this->sid = $sid;
+        return $sid;
     }
 
-    public function logout()
+    public function logout($sid)
     {
-        return $this->adapter->logout($this->sid);
+        return $this->adapter->logout($sid);
     }
 
-    public function getCaptcha()
+    public function getCaptcha($sid)
     {
-        return $this->adapter->getCaptcha($this->sid);
+        return $this->adapter->getCaptcha($sid);
     }
 
-    public function checkCaptcha($captcha)
+    public function checkCaptcha($sid, $captcha)
     {
         if (strlen($captcha) !== Regon::CAPTCHA_LENGTH) {
             throw new InvalidCaptchaLengthException();
         }
 
-        return $this->adapter->checkCaptcha($this->sid, $captcha);
+        return $this->adapter->checkCaptcha($sid, $captcha);
     }
 
-    public function search($type, $value)
+    public function search($sid, $type, $value)
     {
         $this->validate($type, $value);
 
-        return $this->adapter->search($this->sid, $type, $value);
+        return $this->adapter->search($sid, $type, $value);
     }
 
-    public function searchByNip($value)
+    public function searchByNip($sid, $value)
     {
-        return $this->search(Regon::SEARCH_TYPE_NIP, $value);
+        return $this->search($sid, Regon::SEARCH_TYPE_NIP, $value);
     }
 
-    public function searchByRegon($value)
+    public function searchByRegon($sid, $value)
     {
-        return $this->search(Regon::SEARCH_TYPE_REGON, $value);
+        return $this->search($sid, Regon::SEARCH_TYPE_REGON, $value);
     }
 
-    public function searchByKrs($value)
+    public function searchByKrs($sid, $value)
     {
-        return $this->search(Regon::SEARCH_TYPE_KRS, $value);
+        return $this->search($sid, Regon::SEARCH_TYPE_KRS, $value);
     }
 
     private function validate($type, $value)
