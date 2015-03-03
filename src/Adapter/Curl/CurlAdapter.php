@@ -90,7 +90,7 @@ class CurlAdapter implements AdapterInterface
             throw new CurlException($this->curl->error_message, $this->curl->error_code);
         }
 
-        return json_decode($this->curl->response)->d;
+        return $this->curl->response->d;
     }
 
     private function getUrl($action)
