@@ -1,23 +1,23 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "122fdd0d2c4c4e0fe981c9855581d373",
+    "hash": "17af27058426078eabea4ea9037c3233",
     "packages": [
         {
             "name": "php-curl-class/php-curl-class",
-            "version": "dev-master",
+            "version": "3.5.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-curl-class/php-curl-class.git",
-                "reference": "ef8aad48743600f2d625dcd1683b835c41616f1f"
+                "reference": "c03749bea01b127e59cbbfcd138e87324546d91c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-curl-class/php-curl-class/zipball/ef8aad48743600f2d625dcd1683b835c41616f1f",
-                "reference": "ef8aad48743600f2d625dcd1683b835c41616f1f",
+                "url": "https://api.github.com/repos/php-curl-class/php-curl-class/zipball/c03749bea01b127e59cbbfcd138e87324546d91c",
+                "reference": "c03749bea01b127e59cbbfcd138e87324546d91c",
                 "shasum": ""
             },
             "require": {
@@ -45,19 +45,28 @@
             "description": "PHP Curl Class is an object-oriented wrapper of the PHP cURL extension.",
             "homepage": "https://github.com/php-curl-class/php-curl-class",
             "keywords": [
+                "api",
                 "class",
+                "client",
                 "curl",
-                "php"
+                "framework",
+                "http",
+                "http client",
+                "json",
+                "php",
+                "requests",
+                "rest",
+                "restful",
+                "web service",
+                "xml"
             ],
-            "time": "2015-03-02 20:26:06"
+            "time": "2015-04-24 09:30:52"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "php-curl-class/php-curl-class": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
