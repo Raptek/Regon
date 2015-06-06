@@ -2,7 +2,7 @@
 
 namespace Raptek\Regon;
 
-class Regon
+interface RegonInterface
 {
     const SERVICE_URL = 'https://wyszukiwarkaregon.stat.gov.pl/wsBIR/UslugaBIRzewnPubl.svc';
     const SERVICE_URL_TEST = 'https://wyszukiwarkaregontest.stat.gov.pl/wsBIR/UslugaBIRzewnPubl.svc';

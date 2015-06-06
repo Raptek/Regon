@@ -25,7 +25,7 @@ class Client
     {
         $sid = $this->adapter->login($this->apiKey);
 
-        if ($sid === Regon::LOGIN_ERROR || strlen($sid) !== Regon::SESSION_ID_LENGTH) {
+        if ($sid === RegonInterface::LOGIN_ERROR || strlen($sid) !== RegonInterface::SESSION_ID_LENGTH) {
             throw new LoginException();
         }
 
@@ -44,11 +44,16 @@ class Client
 
     public function checkCaptcha($sid, $captcha)
     {
-        if (strlen($captcha) !== Regon::CAPTCHA_LENGTH) {
+        if (strlen($captcha) !== RegonInterface::CAPTCHA_LENGTH) {
             throw new InvalidCaptchaLengthException();
         }
 
         return $this->adapter->checkCaptcha($sid, $captcha);
+    }
+
+    public function searchByNip($sid, $value)
+    {
+        return $this->search($sid, RegonInterface::SEARCH_TYPE_NIP, $value);
     }
 
     public function search($sid, $type, $value)
@@ -56,21 +61,6 @@ class Client
         $this->validate($type, $value);
 
         return $this->adapter->search($sid, $type, $value);
-    }
-
-    public function searchByNip($sid, $value)
-    {
-        return $this->search($sid, Regon::SEARCH_TYPE_NIP, $value);
-    }
-
-    public function searchByRegon($sid, $value)
-    {
-        return $this->search($sid, Regon::SEARCH_TYPE_REGON, $value);
-    }
-
-    public function searchByKrs($sid, $value)
-    {
-        return $this->search($sid, Regon::SEARCH_TYPE_KRS, $value);
     }
 
     private function validate($type, $value)
@@ -83,13 +73,13 @@ class Client
     private function getValidator($type)
     {
         switch ($type) {
-            case Regon::SEARCH_TYPE_NIP:
+            case RegonInterface::SEARCH_TYPE_NIP:
                 $validator = new NipValidator();
                 break;
-            case Regon::SEARCH_TYPE_REGON:
+            case RegonInterface::SEARCH_TYPE_REGON:
                 $validator = new RegonValidator();
                 break;
-            case Regon::SEARCH_TYPE_KRS:
+            case RegonInterface::SEARCH_TYPE_KRS:
                 $validator = new KrsValidator();
                 break;
             default:
@@ -98,5 +88,15 @@ class Client
         }
 
         return $validator;
+    }
+
+    public function searchByRegon($sid, $value)
+    {
+        return $this->search($sid, RegonInterface::SEARCH_TYPE_REGON, $value);
+    }
+
+    public function searchByKrs($sid, $value)
+    {
+        return $this->search($sid, RegonInterface::SEARCH_TYPE_KRS, $value);
     }
 }

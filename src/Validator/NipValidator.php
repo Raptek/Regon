@@ -13,7 +13,7 @@ class NipValidator implements ValidatorInterface
             throw new InvalidArgumentException();
         }
 
-        $stringValue = (string)$value;
+        $stringValue = (string) $value;
         $nip = preg_replace('/[ -]/im', '', $stringValue);
         $length = strlen($nip);
 

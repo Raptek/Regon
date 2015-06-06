@@ -13,7 +13,7 @@ class RegonValidator implements ValidatorInterface
             throw new InvalidArgumentException();
         }
 
-        $stringValue = (string)$value;
+        $stringValue = (string) $value;
         $regon = preg_replace('/[ -]/im', '', $stringValue);
         $length = strlen($regon);
 

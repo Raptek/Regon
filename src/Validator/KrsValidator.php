@@ -13,7 +13,7 @@ class KrsValidator implements ValidatorInterface
             throw new InvalidArgumentException();
         }
 
-        $stringValue = (string)$value;
+        $stringValue = (string) $value;
         $krs = preg_replace('/[ -]/im', '', $stringValue);
         $length = strlen($krs);
 
